@@ -41,13 +41,7 @@ module "this" {
   ebs_block_device  = "${var.ebs_block_device}"
   root_block_device = "${var.root_block_device}"
 
-  tags = "${merge(
-    map(
-      "Name",
-      (var.instance_count > 1) ? format("%s-%d", var.name, count.index+1) : var.name
-    ),
-    var.tags
-  )}"
+  tags = "${var.tags}"
 }
 
 resource "aws_volume_attachment" "this_ec2" {
